@@ -21,7 +21,7 @@ jobs:
       run: |
         ssh -o StrictHostKeyChecking=no ec2-user@${{ secrets.EC2_INSTANCE_IP }} "
         sudo yum install -y git &&
-        rm -rf /home/ec2-user/app &&
+        sudo rm -rf /home/ec2-user/app &&
         mkdir -p /home/ec2-user/app &&  
         cd /home/ec2-user/app && 
         
