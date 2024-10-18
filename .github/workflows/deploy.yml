@@ -19,7 +19,7 @@ jobs:
 
     - name: Copy project to EC2
       run: |
-        scp -r -o StrictHostKeyChecking=no ./ ec2-user@${{ secrets.EC2_INSTANCE_IP }}:/home/ec2-user/app
+        scp -r -o StrictHostKeyChecking=no * ec2-user@${{ secrets.EC2_INSTANCE_IP }}:/home/ec2-user/app
 
     - name: Deploy using CDK on EC2
       run: |
