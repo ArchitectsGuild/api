@@ -30,6 +30,7 @@ jobs:
     - name: Installing npm packages
       run: |
         ssh -o StrictHostKeyChecking=no -o ServerAliveInterval=30 ec2-user@${{ secrets.EC2_INSTANCE_IP }} "
+        curl -fsSL https://rpm.nodesource.com/setup_20.x | sudo bash - &&
         sudo yum install -y nodejs &&
         sudo npm install -g aws-cdk" 
 
