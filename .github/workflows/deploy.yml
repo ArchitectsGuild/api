@@ -23,10 +23,14 @@ jobs:
         mkdir /home/ec2-user/app"
         scp -r -o StrictHostKeyChecking=no * ec2-user@${{ secrets.EC2_INSTANCE_IP }}:/home/ec2-user/app
 
+    - name: Installing npm packages
+      run: |
+        ssh -o StrictHostKeyChecking=no -o ServerAliveInterval=30 ec2-user@${{ secrets.EC2_INSTANCE_IP }} "
+        cd /home/ec2-user/app && 
+        npm install" 
+
     - name: Deploy using CDK on EC2
       run: |
-        ssh -o StrictHostKeyChecking=no ec2-user@${{ secrets.EC2_INSTANCE_IP }} "
-        cd /home/ec2-user/app && 
-        npm install && 
+        ssh -o StrictHostKeyChecking=no -o ServerAliveInterval=30 ec2-user@${{ secrets.EC2_INSTANCE_IP }} "
         cdk bootstrap && 
         cdk deploy --require-approval never"
