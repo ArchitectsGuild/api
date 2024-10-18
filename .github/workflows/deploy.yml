@@ -20,7 +20,8 @@ jobs:
     - name: Copy project to EC2
       run: |
         ssh -o StrictHostKeyChecking=no ec2-user@${{ secrets.EC2_INSTANCE_IP }} "
-        mkdir -p /home/ec2-user/app
+        sudo yum install -y git &&
+        mkdir -p /home/ec2-user/app &&
         cd /home/ec2-user/app && 
         git clone https://github.com/ArchitectsGuild/api . "
 
