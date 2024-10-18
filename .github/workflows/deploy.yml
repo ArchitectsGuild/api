@@ -32,5 +32,6 @@ jobs:
     - name: Deploy using CDK on EC2
       run: |
         ssh -o StrictHostKeyChecking=no -o ServerAliveInterval=30 ec2-user@${{ secrets.EC2_INSTANCE_IP }} "
+        cd /home/ec2-user/app && 
         cdk bootstrap && 
         cdk deploy --require-approval never"
