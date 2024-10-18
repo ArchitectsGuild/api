@@ -21,13 +21,14 @@ jobs:
       run: |
         ssh -o StrictHostKeyChecking=no ec2-user@${{ secrets.EC2_INSTANCE_IP }} "
         mkdir -p /home/ec2-user/app"
-        scp -r -o StrictHostKeyChecking=no * ec2-user@${{ secrets.EC2_INSTANCE_IP }}:/home/ec2-user/app
+        scp -r -o StrictHostKeyChecking=no . ec2-user@${{ secrets.EC2_INSTANCE_IP }}:/home/ec2-user/app
 
     - name: Installing npm packages
       run: |
         ssh -o StrictHostKeyChecking=no -o ServerAliveInterval=30 ec2-user@${{ secrets.EC2_INSTANCE_IP }} "
         cd /home/ec2-user/app && 
-        npm install" 
+        sudo yum install -y nodejs &&
+        npm install -g aws-cdk" 
 
     - name: Deploy using CDK on EC2
       run: |
