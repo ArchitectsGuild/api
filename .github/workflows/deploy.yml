@@ -20,7 +20,7 @@ jobs:
     - name: Copy project to EC2
       run: |
         ssh -o StrictHostKeyChecking=no ec2-user@${{ secrets.EC2_INSTANCE_IP }} "
-        mkdir /home/ec2-user/app"
+        mkdir -p /home/ec2-user/app"
         scp -r -o StrictHostKeyChecking=no * ec2-user@${{ secrets.EC2_INSTANCE_IP }}:/home/ec2-user/app
 
     - name: Installing npm packages
