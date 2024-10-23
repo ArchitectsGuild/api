@@ -13,7 +13,18 @@ export class ApiStack extends cdk.Stack {
       handler: 'index.handler',
       code: lambda.Code.fromInline(`
         exports.handler = async function(event) {
-          return { statusCode: 200, body: 'Hello World' };
+          const response = {
+            message: "Hello World",
+            timestamp: new Date().toISOString()
+          };
+          
+          return {
+            statusCode: 200,
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(response)
+          };
         };
       `),
     });
