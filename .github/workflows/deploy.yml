@@ -24,7 +24,6 @@ jobs:
         sudo rm -rf /home/ec2-user/app &&
         mkdir -p /home/ec2-user/app &&  
         cd /home/ec2-user/app && 
-        
         git clone https://github.com/ArchitectsGuild/api . "
 
     - name: Installing npm packages
@@ -34,7 +33,7 @@ jobs:
         yum install -y nodejs &&
         npm install -g aws-cdk &&
         npm install aws-cdk-lib constructs typescript ts-node --save-dev &&
-        npx cdk --version
+        npx cdk --version"
 
     - name: Deploy using CDK on EC2
       run: |
