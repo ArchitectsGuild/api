@@ -31,8 +31,8 @@ jobs:
         ssh -o StrictHostKeyChecking=no -o ServerAliveInterval=30 ec2-user@${{ secrets.EC2_INSTANCE_IP }} "
         curl -fsSL https://rpm.nodesource.com/setup_20.x | sudo bash - &&
         sudo yum install -y nodejs &&
-        npm install -g aws-cdk &&
-        npm install aws-cdk-lib constructs typescript ts-node --save-dev &&
+        sudo npm install -g aws-cdk &&
+        sudo npm install aws-cdk-lib constructs typescript ts-node --save-dev &&
         npx cdk --version"
 
     - name: Deploy using CDK on EC2
